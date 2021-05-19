@@ -14,9 +14,11 @@ async function loginClick() {
         span.innerHTML = 'Successful';
         const res = await fetch('http://195.19.40.218:1313/auth/login', {
             method: 'POST',
-            body: {
-                "login": login,
-                "password": password
+            body: JSON.stringify({
+                login, password
+            }),
+            headers: {
+                'Content-Type': 'application/json'
             }
         });
         const json = await res.json();
@@ -39,15 +41,14 @@ async function loadUsers() {
             }
         });
         const json = await res.json();
-        for(let i = 0; i < json.length; i++) {
+        for(record of json) {
             users.innerHTML += `
                 <div class='usercard'>
-                    <img src="${json[i].img}?id=${Math.random()}}" alt="photo">
-                    <p>${json[i].lastName}</p>
-                    <p>${json[i].firstName}</p>
+                    <img src="${record.img}?id=${Math.random()}}" alt="photo">
+                    <p>${record.lastName}</p>
+                    <p>${record.firstName}</p>
                 </div>
             `;
-            console.log(json[i].img);
         }
     }
 }
