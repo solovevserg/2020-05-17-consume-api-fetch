@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>TimurkaSite</title>
+</head>
+<body>
+    <div class="auth">
+        <input id="login" type="text" placeholder="Login">
+        <input id="password" type="password" placeholder="Password">
+        <div>
+            <button onclick="loginClick()">LOGIN</button>
+            <button onclick="logoutClick()">LOGOUT</button>
+        </div>
+        <span id="result">Enter login and password</span>
+    </div>
+
+    <div class="loadUsers">
+        <button onclick="loadUsers()">Load users</button>
+        <div id="users">
+
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+</html>
