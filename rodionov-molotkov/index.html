@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="login">
+    <input type="text" id="password">
+    <button id="btn1">Click</button>
+    <button id="btn2">Get Users</button>
+    
+    <script>    
+    const buttonToken = document.getElementById("btn1")
+    const buttonUsers = document.getElementById("btn2")
+    const myStorage = window.localStorage
+    
+    buttonToken.addEventListener ('click',() => {
+        
+        const loginInput = document.getElementById("login")
+        const passwordInput = document.getElementById("password")
+        login = loginInput.value 
+        password = passwordInput.value
+        console.log(login)
+        let credentials = {
+            "login": login,
+            "password": password
+        }
+
+        fetch("http://195.19.40.218:1313/auth/login",{
+            method:'POST',
+            headers:{
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(credentials)
+        }).then(response => response.json()).then(data => myStorage.setItem('token',data['token']))
+
+    })
+
+    buttonUsers.addEventListener('click', () => {
+        fetch("http://195.19.40.218:1313/users",{
+            method:'GET',
+            headers: {
+                'auth' : myStorage.getItem('token')
+            }
+        }).then(response => response.json()).then(
+             data => 
+         data.forEach(element  => {
+             console.log(element['firstName'])
+             let div = document.createTextNode(element['firstName'] + ' ' + element['lastName'])
+             
+             const lineBreak = document.createElement('br');
+            document.body.appendChild(lineBreak)
+             document.body.append(div)
+         } 
+        ))
+        
+    })
+
+
+    </script>
+</body>
+</html>
