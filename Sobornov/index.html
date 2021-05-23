@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+    <div>
+        <label for= "login">Login</label>
+        <input type="text" id="login" name="login" required minlength="5" maxlength="5" size="10">
+    </div>
+    
+    <div>
+        <label for="Pass">Password</label>
+        
+        <input type="text" id="Pass" name="Pass" required minlength="5" maxlength="5" size="10">
+    </div>
+    
+    <div>
+        <button onclick="loginClicked()" id="btnLogin" type="button">
+            Login
+        </button>
+    </div>
+
+    <div>
+        <button onclick="loadUsersClicked()" id="btnLoadUsers" type="button">
+            load Users
+        </button>
+    </div>
+    
+    
+    <script src="/main.js"></script>
+
+</body>
+
+</html>
